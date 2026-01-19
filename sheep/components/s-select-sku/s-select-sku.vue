@@ -95,7 +95,12 @@
 <script setup>
   import { computed, reactive, watch } from 'vue';
   import sheep from '@/sheep';
-  import { formatStock, convertProductPropertyList, fen2yuan } from '@/sheep/hooks/useGoods';
+  import {
+    formatStock,
+    convertProductPropertyList,
+    fen2yuan,
+    initDefaultSelect,
+  } from '@/sheep/hooks/useGoods';
 
   const emits = defineEmits(['change', 'addCart', 'buy', 'close']);
   const props = defineProps({
@@ -305,7 +310,8 @@
   }
 
   changeDisabled(false);
-  // TODO 芋艿：待讨论的优化点：1）单规格，要不要默认选中；2）默认要不要选中第一个规格
+  // 初始化默认选中规格中的第一个，如果不需要，注释这段代码即可
+  initDefaultSelect(propertyList, onSelectSku);
 </script>
 
 <style lang="scss" scoped>

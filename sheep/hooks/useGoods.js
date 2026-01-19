@@ -497,3 +497,18 @@ export function getRewardActivityRuleItemDescriptions(activity) {
   });
   return result;
 }
+
+/** 单规格，要默认选中 */
+export function initDefaultSelect(propertyList, onSelectSku) {
+  if (propertyList.length === 0) {
+    return;
+  }
+  // 遍历每一个属性
+  for (const property of propertyList) {
+    const firstValue = (property.values || [])[0];
+    // 不是禁用直接选中
+    if (firstValue && !firstValue.disabled) {
+      onSelectSku(property.id, firstValue.id);
+    }
+  }
+}
